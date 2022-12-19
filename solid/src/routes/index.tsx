@@ -1,31 +1,26 @@
-import { A } from "solid-start";
-import Counter from "~/components/Counter";
+import { Show, createSignal } from 'solid-js';
+import Buzzer from '~/components/client/Buzzer';
+import NameInput from '~/components/client/NameInput';
+
+const [name, setName] = createSignal('');
+export const [player, setPlayer] = createSignal<Player | undefined>(undefined);
 
 export default function Home() {
-  return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-        Hello world!
-      </h1>
-      <Counter />
-      <p class="mt-8">
-        Visit{" "}
-        <a
-          href="https://solidjs.com"
-          target="_blank"
-          class="text-sky-600 hover:underline"
-        >
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
-      </p>
-      <p class="my-4">
-        <span>Home</span>
-        {" - "}
-        <A href="/about" class="text-sky-600 hover:underline">
-          About Page
-        </A>{" "}
-      </p>
-    </main>
-  );
+	return (
+		<main class="text-center p-8 lg:p-12 h-full w-full bg-[#3A4589] grid place-items-center">
+			<h1 class="text-3xl text-white text-left font-semibold absolute left-8 top-8">
+				<div>Big</div>
+				<div>Business</div>
+				<div>Buzzer</div>
+			</h1>
+			<div class="">
+				<Show when={player()}>
+					<Buzzer></Buzzer>
+				</Show>
+				<Show when={!player()}>
+					<NameInput name={name} setName={setName}></NameInput>
+				</Show>
+			</div>
+		</main>
+	);
 }

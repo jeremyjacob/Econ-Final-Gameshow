@@ -1,3 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+	font-family: 'Poppins', sans-serif;
+	color: white;
+	-webkit-tap-highlight-color: transparent;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.triangle-background {
+	background-image: url("data:image/svg+xml,%3Csvg width='181' height='243' viewBox='0 0 181 243' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M90.5 187L180.134 61.75H0.866371L90.5 187Z' fill='%23DC5454' fill-opacity='0.5'/%3E%3C/svg%3E"); /* background-size: 10%; */
+	background-size: 100%;
+	background-repeat: repeat-y;
+	background-position: 0 0;
+	animation: backgroundMove 200s linear infinite;
+}
+
+@keyframes backgroundMove {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 4000%;
+	}
+}
+
+@keyframes scale {
+	0%,
+	100% {
+		transform: scale(1.1);
+		animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
+	}
+	50% {
+		transform: none;
+		animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+	}
+}
+.animate-scale {
+	animation: scale 1s infinite;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(-10%);
+		animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+	}
+	50% {
+		transform: none;
+		animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	}
+}
+.animate-bounce {
+	animation: bounce 1s infinite;
+}
+
+@font-face {
+	font-family: 'Virgil';
+	src: url('https://excalidraw.com/Virgil.woff2');
+}
+@font-face {
+	font-family: 'Cascadia';
+	src: url('https://excalidraw.com/Cascadia.woff2');
+}

@@ -1,37 +1,25 @@
+import { Show, onMount } from 'solid-js';
+import Buzzing from '~/components/display/Buzzing';
+import Entry from '~/components/display/Entry';
 import Scoreboard from '~/components/display/Scoreboard';
 
-const players = [
-	{
-		name: 'Jeremy',
-		score: 0,
-		id: 'player1',
-	},
-	{
-		name: 'John',
-		score: 1,
-		id: 'player2',
-	},
-	{
-		name: 'Joe',
-		score: 0,
-		id: 'player3',
-	},
-	{
-		name: 'Jim',
-		score: 2,
-		id: 'player4',
-	},
-	{
-		name: 'Jill',
-		score: 3,
-		id: 'player5',
-	},
-];
+import { buzzingPlayer, connect, started } from '~/lib/display-client';
+import { players } from '~/lib/game';
+
+onMount(() => {
+	connect();
+});
 
 export default function Display() {
 	return (
-		<main class="">
-			<Scoreboard players={players}></Scoreboard>
+		<main class="h-full">
+			<Buzzing player={buzzingPlayer} />
+			<Show when={started()}>
+				<Scoreboard players={players}></Scoreboard>
+			</Show>
+			<Show when={!started()}>
+				<Entry></Entry>
+			</Show>
 		</main>
 	);
 }
